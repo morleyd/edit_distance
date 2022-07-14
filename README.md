@@ -38,6 +38,23 @@ Edits:
  'four candles'
 ```
 
+Comparing long inputs from files
+```commandline
+$ file1=$(cat test_files/christmas_carol.txt)
+$ file2=$(cat test_files/winnie_the_pooh.txt)
+$ ./levenshtein.py "{$file1}" "{$file2}"
+Min Edit Distance: 1004
+Edit Tally: {'s': 791, 'i': 144, 'd': 69, ' ': 354, 'Total': 1358}
+```
+```commandline
+$ file1=$(cat test_files/christmas_carol.txt)
+$ file2=$(cat test_files/winnie_the_pooh.txt)
+$ ./levenshtein.py "{$file1}" "{$file2}" -p -c
+Min Edit Distance: 994
+Edit Tally: {'s': 781, 'i': 144, 'd': 69, ' ': 364, 'Total': 1358}
+Too many edits to display
+```
+
 
 ### Fuzzy Match
 ```commandline
@@ -79,23 +96,6 @@ $ ./fuzzy_match.py abc acb cab bbb xxx -t 1
 Match(s1='abc', s2='acb', score=0.6666666666666667)
 Match(s1='abc', s2='cab', score=0.33333333333333337)
 Match(s1='abc', s2='bbb', score=0.33333333333333337)
-```
-
-Comparing long inputs from files
-```commandline
-$ file1=$(cat test_files/christmas_carol.txt)
-$ file2=$(cat test_files/winnie_the_pooh.txt)
-$ ./levenshtein.py "{$file1}" "{$file2}"
-Min Edit Distance: 1004
-Edit Tally: {'s': 791, 'i': 144, 'd': 69, ' ': 354, 'Total': 1358}
-```
-```commandline
-$ file1=$(cat test_files/christmas_carol.txt)
-$ file2=$(cat test_files/winnie_the_pooh.txt)
-$ ./levenshtein.py "{$file1}" "{$file2}" -p -c
-Min Edit Distance: 994
-Edit Tally: {'s': 781, 'i': 144, 'd': 69, ' ': 364, 'Total': 1358}
-Too many edits to display
 ```
 
 The algorithm allows for multi-token strings in both the search string and the options
